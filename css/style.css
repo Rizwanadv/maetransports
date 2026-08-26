@@ -1,0 +1,616 @@
+:root {
+  --primary: #1a365d;
+  --accent: #c53030;
+  --dark: #0f172a;
+  --light: #f8fafc;
+  --gray: #64748b;
+  --gold: #d69e2e;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #1e293b;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4 { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* Header / Nav */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.97);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s;
+}
+header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.6rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-img {
+  height: 52px;
+  width: auto;
+}
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.8rem;
+  align-items: center;
+}
+nav a {
+  color: #e2e8f0;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+  position: relative;
+}
+nav a:hover, nav a.active { color: var(--accent); }
+nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+}
+.nav-cta {
+  background: var(--accent);
+  color: #fff !important;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.nav-cta:hover { background: #9b2c2c; color: #fff !important; }
+.nav-cta.active::after { display: none; }
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+/* Page Hero (inner pages) */
+.page-hero {
+  padding: 140px 1.5rem 80px;
+  background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)),
+              url('../images/truck_highway.jpg') center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+}
+.page-hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  margin-bottom: 0.8rem;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+.page-hero p {
+  font-size: 1.15rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Home Hero */
+.hero {
+  height: 100vh;
+  min-height: 620px;
+  background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.75)),
+              url('../images/truck_highway.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+.hero-content {
+  max-width: 900px;
+  padding: 2rem;
+  animation: fadeUp 1s ease-out;
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.hero h1 span { color: var(--accent); }
+.hero p {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 300;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+}
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-block;
+  padding: 0.9rem 2rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #9b2c2c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(197, 48, 48, 0.4);
+}
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+}
+.btn-outline:hover {
+  background: #fff;
+  color: var(--dark);
+}
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  opacity: 0.7;
+}
+.scroll-indicator span {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: rotate(45deg);
+}
+
+/* Sections common */
+section { padding: 5rem 1.5rem; }
+.container { max-width: 1200px; margin: 0 auto; }
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.section-title h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+.section-title p {
+  color: var(--gray);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.accent-line {
+  width: 60px;
+  height: 4px;
+  background: var(--accent);
+  margin: 1rem auto 0;
+}
+
+/* About */
+.about { background: #fff; }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.about-text h3 {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+.about-text p {
+  margin-bottom: 1rem;
+  color: #475569;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.stat-box {
+  background: var(--dark);
+  color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+}
+.stat-box .num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+.stat-box .label {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin-top: 0.3rem;
+}
+.about-img {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.about-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 400px;
+}
+
+/* Services */
+.services {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #fff;
+}
+.services .section-title h2 { color: #fff; }
+.services .section-title p { color: #94a3b8; }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+.service-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s;
+  text-align: center;
+}
+.service-card:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-8px);
+  border-color: var(--accent);
+}
+.service-icon {
+  width: 70px;
+  height: 70px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 1.8rem;
+}
+.service-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+.service-card p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+/* Fleet */
+.fleet { background: #f1f5f9; }
+.fleet-showcase {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.fleet-img {
+  border-radius: 10px;
+  overflow: hidden;
+  height: 250px;
+  position: relative;
+}
+.fleet-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.fleet-img:hover img { transform: scale(1.08); }
+.fleet-img .overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: #fff;
+  padding: 1.5rem 1rem 1rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+}
+.fleet-cta {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Testimonials */
+.testimonials { background: #fff; }
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+.testimonial-card {
+  background: #f8fafc;
+  border-left: 4px solid var(--accent);
+  padding: 2rem;
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.testimonial-card .quote {
+  font-size: 1.05rem;
+  color: #334155;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.testimonial-card .quote::before {
+  content: '"';
+  font-size: 3rem;
+  color: var(--accent);
+  opacity: 0.3;
+  position: absolute;
+  top: -20px;
+  left: -10px;
+  font-family: Georgia, serif;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.author-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.author-info strong { display: block; color: var(--primary); }
+.author-info span { font-size: 0.85rem; color: var(--gray); }
+
+/* Coverage */
+.coverage {
+  background: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.9)),
+              url('../images/container_truck.jpg') center/cover;
+  color: #fff;
+  text-align: center;
+}
+.coverage h2 { color: #fff; }
+.coverage p { color: #cbd5e1; max-width: 700px; margin: 0 auto 2rem; }
+.coverage-flags {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.flag-box {
+  background: rgba(255,255,255,0.1);
+  padding: 1.5rem 2.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.flag-box .emoji { font-size: 3rem; margin-bottom: 0.5rem; }
+.flag-box h4 { font-size: 1.3rem; }
+
+/* Contact */
+.contact {
+  background: var(--dark);
+  color: #e2e8f0;
+}
+.contact .section-title h2 { color: #fff; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+.contact-info h3 {
+  color: #fff;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+.contact-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+.contact-item .icon {
+  width: 40px;
+  height: 40px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.contact-item strong { display: block; color: #fff; margin-bottom: 0.2rem; }
+.contact-item p { color: #94a3b8; font-size: 0.95rem; }
+.contact-form {
+  background: rgba(255,255,255,0.05);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.form-group { margin-bottom: 1.2rem; }
+.form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 6px;
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.form-group textarea { min-height: 120px; resize: vertical; }
+
+/* Preview cards on home */
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.preview-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
+}
+.preview-card:hover { transform: translateY(-6px); }
+.preview-card img {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+}
+.preview-card .content {
+  padding: 1.25rem;
+}
+.preview-card h3 {
+  font-size: 1.2rem;
+  color: var(--primary);
+  margin-bottom: 0.4rem;
+}
+.preview-card p {
+  font-size: 0.9rem;
+  color: var(--gray);
+  margin-bottom: 0.8rem;
+}
+.preview-card a {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
+  background: #020617;
+  color: #64748b;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+}
+footer a { color: #94a3b8; }
+footer a:hover { color: var(--accent); }
+
+/* Floating WhatsApp Button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.6);
+}
+.whatsapp-float svg {
+  width: 34px;
+  height: 34px;
+  fill: #fff;
+}
+.whatsapp-float .tooltip {
+  position: absolute;
+  right: 70px;
+  background: #075E54;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+.whatsapp-float:hover .tooltip { opacity: 1; }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-10px); }
+  60% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  .fleet-showcase { grid-template-columns: 1fr; }
+  .fleet-img { height: 220px; }
+  nav ul { display: none; }
+  .mobile-toggle { display: block; }
+  nav.open ul {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: var(--dark);
+    padding: 1.5rem;
+    gap: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  .whatsapp-float { bottom: 20px; right: 20px; width: 54px; height: 54px; }
+  .whatsapp-float svg { width: 28px; height: 28px; }
+}
+@media (max-width: 600px) {
+  .stats { grid-template-columns: 1fr; }
+  .hero { min-height: 520px; }
+  .page-hero { padding: 120px 1rem 60px; }
+}
